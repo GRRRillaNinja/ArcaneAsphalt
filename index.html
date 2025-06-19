@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcane Asphalt</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/styles.css">
+	<!-- FontAwesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="app-container">
+        <div id="map"></div>
+        
+        <div id="info-panels">
+            <div id="tab-nav">
+                <button class="tab-button active" onclick="window.arcane.ui.switchTab('territory')">Territory</button>
+                <button class="tab-button" onclick="window.arcane.ui.switchTab('stats-panel')">Stats</button>
+            </div>
+
+            <div id="stats-panel" class="tab-content active">
+  <h3>Stats</h3>
+  <p>Car: <span id="carInfo">Standard</span></p>
+  <p>Car Speed: <span id="carSpeed">60</span></p>
+  <p>Car Handling: <span id="carHandling">40</span></p>
+  <p>Resources: <span id="resources">100</span></p>
+  <p>Square Miles Available: <span id="statsSquareMiles">0.050</span></p>
+  <p>Outposts Available: <span id="statsAvailableOutposts">4</span></p>
+  <p>Total Territories Owned: <span id="statsTerritoryCount">0</span></p>
+  <p>Total Square Mileage Owned: <span id="statsTerritoryArea">0</span></p>
+</div>
+<div id="territory" class="tab-content">
+  <h3>Territory</h3>
+  <p>Available Outposts: <span id="territoryAvailableOutposts">4</span></p>
+  <p>Square Miles Available: <span id="territorySquareMiles">0.050</span></p>
+  <p>Available Territory: <span id="availableTerritory">0.050</span> sq miles</p>
+  <p>Territory Count: <span id="territoryCount">0</span></p>
+  <p>Territory Area: <span id="territoryArea">0.000</span> sq miles</p>
+  <p>Territory List: <span id="territoryList">None</span></p>
+  <button id="drawButton" onclick="window.arcane.territory.toggleDrawMode()">Create New Territory</button>
+  <button id="editTerritoryButton" class="disabled" onclick="window.arcane.territory.toggleEditMode()">Edit Territory</button>
+  <button id="saveTerritoryButton" class="disabled" onclick="window.arcane.territory.saveTerritory()">Save Territory</button>
+  <button id="cancelTerritoryButton" class="disabled" onclick="window.arcane.territory.cancelTerritory()">Cancel</button>
+  <button id="deleteTerritoryButton" class="disabled" onclick="window.arcane.territory.deleteTerritory()">Delete Territory</button>
+  <button id="addOutpostButton" onclick="window.arcane.territory.addOutpost()">Add Outpost</button>
+  <button id="deleteOutpostButton" class="disabled" onclick="window.arcane.territory.deleteOutpost()">Delete Outpost</button>
+  <button onclick="window.arcane.territory.debugAddOutposts()">Debug: Add 10 Outposts</button>
+  <button onclick="window.arcane.territory.debugAddSquareMile()">Debug: Add 1 Square Mile</button>
+</div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.60.0/phaser.min.js"></script>
+    <script src="js/Leaflet.EdgeMarker.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/territory.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/main.js"></script>
+	<!-- Add this debug script before closing </body> tag -->
+    <script>
+        console.log('=== DEBUG SCRIPT RUNNING ===');
+        console.log('window.arcane:', window.arcane);
+        
+        if (window.arcane) {
+            console.log('window.arcane.territory:', window.arcane.territory);
+            console.log('window.arcane.game:', window.arcane.game);
+            console.log('window.arcane.map:', window.arcane.map);
+        }
+        
+        // Test if territory functions exist
+        setTimeout(() => {
+            console.log('=== 2 SECOND DELAY CHECK ===');
+            console.log('window.arcane:', window.arcane);
+            if (window.arcane && window.arcane.territory) {
+                console.log('Territory functions available:', Object.keys(window.arcane.territory));
+            } else {
+                console.error('window.arcane.territory still undefined after 2 seconds');
+            }
+        }, 2000);
+    </script>
+</body>
+</html>
+</html>

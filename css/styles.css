@@ -1,0 +1,232 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+#app-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+#map {
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  visibility: visible;
+  z-index: 1;
+}
+#info-panels {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  z-index: 1000;
+  overflow-y: auto;
+}
+#tab-nav {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+.tab-button {
+  flex: 1;
+  padding: 10px;
+  background: #f0f0f0;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.3s;
+}
+.tab-button:hover {
+  background: #e0e0e0;
+}
+.tab-button.active {
+  background: #fff;
+  border-bottom: 2px solid #007bff;
+}
+.tab-content {
+  display: none;
+  padding: 10px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.8);
+}
+.tab-content.active {
+  display: block;
+}
+.tab-content p {
+  margin: 5px 0;
+}
+.tab-content button {
+  display: block;
+  width: 100%;
+  margin: 5px 0;
+  padding: 8px;
+  cursor: pointer;
+}
+.tab-content input {
+  width: 100%;
+  margin: 5px 0;
+  padding: 8px;
+}
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.territory-marker, .race-marker, .player-marker, .temp-marker {
+  pointer-events: none;
+}
+.race-container {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+.load-race, .delete-race {
+  margin-right: 5px;
+}
+.territory-label {
+  pointer-events: auto;
+}
+
+.territory-label.selected {
+  box-shadow: 0 0 8px 3px rgba(255, 255, 0, 0.8);
+}
+
+.territory-name-wrapper {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #333;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  white-space: nowrap;
+  
+  /* True centering using CSS transforms */
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+}
+
+.territory-name-wrapper.wrapped {
+  white-space: normal;
+  max-width: 250px;
+}
+
+.territory-name-wrapper.selected {
+  border-color: yellow;
+  box-shadow: 0 0 8px 3px rgba(255, 255, 0, 0.8);
+}
+
+.territory-name-text {
+  line-height: 1.2;
+  color: #333;
+}
+
+/* Territory label styles */
+.territory-label {
+  transform: translate(-50%, -50%);
+}
+
+.territory-name-display {
+  background: white;
+  color: black;
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.territory-label.selected .territory-name-display {
+  background: #2196F3;
+  color: white;
+}
+
+.territory-name-input {
+  background: #2196F3;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  outline: none;
+}
+
+/* Edge Marker Styles */
+.edge-marker {
+  position: relative;
+  background: none !important;
+  border: none !important;
+}
+
+.edge-marker-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edge-marker-icon {
+  font-size: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.edge-marker-icon:hover {
+  transform: scale(1.2);
+}
+
+.edge-marker-tooltip {
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 1000;
+}
+
+.edge-marker-content:hover .edge-marker-tooltip {
+  opacity: 1;
+}
+
+.edge-marker-name {
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.edge-marker-distance {
+  font-size: 10px;
+  color: #ccc;
+}
+
+.territory-edge .edge-marker-content {
+  border-color: #FF5722;
+  background: rgba(255, 87, 34, 0.9);
+  color: white;
+}
+
+.edge-marker-arrow {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.edge-marker-text {
+  font-size: 10px;
+  line-height: 1.2;
+  margin-top: 2px;
+}
